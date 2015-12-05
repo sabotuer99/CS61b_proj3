@@ -29,6 +29,10 @@ public class Trie {
     }
 
     public void insert(String s) {
+    	
+    	if(s == null || s.equals(""))
+    		throw new IllegalArgumentException("Cannot insert null or empty string into a trie...");
+    	
     	Node pointer = root;
     	for(int i = 0; i < s.length(); i++){
     		Node next = pointer.links[s.charAt(i)];

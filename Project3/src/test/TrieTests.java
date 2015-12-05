@@ -47,6 +47,28 @@ public class TrieTests {
 		assertEquals("c a t t e s t ", sut.toString());
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void insert_nullStringThrowsException(){
+		//Arrange
+		Trie sut = new Trie();
+		
+		//Act
+		sut.insert(null);
+		
+		//Assert
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void insert_emptyStringThrowsException(){
+		//Arrange
+		Trie sut = new Trie();
+		
+		//Act
+		sut.insert("");
+		
+		//Assert
+	}
+	
 	@Test
 	public void find_singleWordFullWord(){
 		//Arrange
@@ -84,6 +106,20 @@ public class TrieTests {
 		
 		//Assert
 		assertFalse(result);
+	}
+	
+	@Test
+	public void testsFromSpec(){
+		Trie sut = new Trie();
+		sut.insert("hello");
+		sut.insert("hey");
+		sut.insert("goodbye");
+		assertTrue(sut.find("hell", false));
+		assertTrue(sut.find("hello", true));
+		assertTrue(sut.find("good", false));
+		assertFalse(sut.find("bye", false));
+		assertFalse(sut.find("heyy", false));
+		assertFalse(sut.find("hell", true));
 	}
 	
 }
