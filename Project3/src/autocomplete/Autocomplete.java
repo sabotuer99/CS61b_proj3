@@ -1,6 +1,7 @@
 package autocomplete;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import edu.princeton.cs.introcs.In;
 import edu.princeton.cs.introcs.StdIn;
@@ -10,12 +11,26 @@ import edu.princeton.cs.introcs.StdOut;
  * Implements autocomplete on prefixes for a given dictionary of terms and weights.
  */
 public class Autocomplete {
+	
+	private TST trie;
+	
     /**
      * Initializes required data structures from parallel arrays.
      * @param terms Array of terms.
      * @param weights Array of weights.
      */
     public Autocomplete(String[] terms, double[] weights) {
+    	if(terms.length != weights.length)
+    		throw new IllegalArgumentException("Must have the same number of terms and weights!");
+    	
+    	trie = new TST();
+    	
+    	for(int i = 0; i < terms.length; i++){
+    		if(weights[i] < 0)
+    			throw new IllegalArgumentException("Weights cannot be negative!");
+    		
+    		trie.insert(terms[i], weights[i]);
+    	}	
     }
 
     /**
@@ -24,7 +39,7 @@ public class Autocomplete {
      * @return
      */
     public double weightOf(String term) {
-		return 0;
+		return trie.find(term);
     }
 
     /**
@@ -33,7 +48,11 @@ public class Autocomplete {
      * @return Best (highest weight) matching string in the dictionary.
      */
     public String topMatch(String prefix) {
-		return "";
+    	List<String> result = trie.findMatches(prefix, 1);
+    	if(result.size() == 1)
+    		return result.get(0);
+    	else
+    		return "";
     }
 
     /**
@@ -44,7 +63,7 @@ public class Autocomplete {
      * @return
      */
     public Iterable<String> topMatches(String prefix, int k) {
-		return null;
+		return trie.findMatches(prefix, k);
     }
 
     /**

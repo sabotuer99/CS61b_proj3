@@ -72,6 +72,7 @@ import javax.swing.SwingUtilities;
 import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.introcs.In;
 
+@SuppressWarnings("serial")
 public class AutocompleteGUI extends JFrame {
     private static int DEF_WIDTH  = 600;
     private static int DEF_HEIGHT = 400;
