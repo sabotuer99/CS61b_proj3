@@ -73,6 +73,9 @@ public class TST {
 	}
 
 	private Node findNode(String s, Node n){
+		if(s.length() < 1)
+			return null;
+		
 		//get first character
 		char first = s.charAt(0);
 		
@@ -116,12 +119,12 @@ public class TST {
 		Node x = findNode(prefix, root);
 		
 		if(x == null)
-			return null;
+			return answers;
 		
 		//if middle is null, this is the only match, just return it
 		if(x.middle == null){
 			if(x.word == null)
-				return null;
+				return answers;
 			else{
 				answers.add(x.word);
 				return answers;

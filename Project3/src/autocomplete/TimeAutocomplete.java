@@ -10,6 +10,12 @@ public class TimeAutocomplete {
     // total score of topMatches. Used to avoid strangeness with compiler optimizing away our calls to topMatches.
     private static double score = 0.0;
 
+    //filename constants
+    public static String CITIES = "/home/troy/JavaRepos/proj3/Project3/src/autocomplete/cities.txt";
+    public static String BABY = "/home/troy/JavaRepos/proj3/Project3/src/autocomplete/baby-names.txt";
+    public static String WIKTIONARY = "/home/troy/JavaRepos/proj3/Project3/src/autocomplete/wiktionary.txt";
+    
+    
     // hack - save terms and weights in instance variables to avoid reparsing (slows autograder)
     private static String[] terms;
     private static String[] sortedTerms;
@@ -118,15 +124,15 @@ public class TimeAutocomplete {
 
     public static void test1() {
         System.out.println("Test 1: timing constructor");
-        timeConstructor("cities.txt");
-        timeConstructor("baby-names.txt");
-        timeConstructor("wiktionary.txt");
+        timeConstructor(CITIES);
+        timeConstructor(BABY);
+        timeConstructor(WIKTIONARY);
     }
 
     public static void test2() {
         int k = 5;
         int prefixLength = 2;
-        String filename = "cities.txt";
+        String filename = CITIES;
         System.out.println((String.format("Calling topMatches() with k = %d and random %d-letter queries using %s\n", k, prefixLength, filename)));
         initTermsWeights(filename);
         constructStudentAutocomplete();
@@ -137,7 +143,7 @@ public class TimeAutocomplete {
     public static void test3() {
         int k = 10;
         int prefixLength = 6;
-        String filename = "cities.txt";
+        String filename = CITIES;
         System.out.println((String.format("Calling topMatches() with k = %d and random %d-letter queries using %s\n", k, prefixLength, filename)));
         initTermsWeights(filename);
         constructStudentAutocomplete();
@@ -149,7 +155,7 @@ public class TimeAutocomplete {
         double ratio = 10;
         int k = 10;
         int prefixLength = 3;
-        String filename = "baby-names.txt";
+        String filename = BABY;
         System.out.println(String.format("Calling topMatches() with k = %d and random %d-letter queries using %s\n", k, prefixLength, filename));
         initTermsWeights(filename);
         constructStudentAutocomplete();
@@ -165,7 +171,7 @@ public class TimeAutocomplete {
         double ratio = 10;
         int k = 3;
         int prefixLength = 2;
-        String filename = "baby-names.txt";
+        String filename = BABY;
         System.out.println(String.format("Calling topMatches() with k = %d and random %d-letter queries using %s\n", k, prefixLength, filename));
         initTermsWeights(filename);
         constructStudentAutocomplete();
